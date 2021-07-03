@@ -22,40 +22,35 @@ public class UpdateStudentDemo {
 		
 		try {
 			
-			// create student object
-			System.out.println("Creting new student object...");
-			Student tempStudent = new Student("Daffy", "Duck", "daffy@luv2code.com");
-			
-			// start a transaction
-			session.beginTransaction();
-			
-			// save the student object
-			System.out.println("Saving the student...");
-			System.out.println(tempStudent);
-			session.save(tempStudent);
-			
-			// commit transaction
-			session.getTransaction().commit();
-			
-			// MY NEW CODE
-			
-			// find out the student's id: primary key
-			System.out.println("Saved student. Generated id: " + tempStudent.getId());
+			int studentId = 1;
 			
 			// now get a new session and start transaction
 			session = factory.getCurrentSession();
 			session.beginTransaction();
 			
-			// retrieve student based on the id: primary key
-			System.out.println("\nGetting student with id: " + tempStudent.getId());
+			// retrieve students based on the id: primary key
+			System.out.println("\nGetting student with id: " + studentId);
 			
-			Student myStudent = session.get(Student.class, tempStudent.getId());
+			Student myStudent = session.get(Student.class, studentId);
 			
-			System.out.println("get complete: " + myStudent);
+			System.out.println("Updating student...");
+			myStudent.setFirstName("Scooby");
 			
 			// commit the transaction
 			session.getTransaction().commit();
 			
+			session = factory.getCurrentSession();
+			session.beginTransaction();
+			
+			// update email for all students
+			System.out.println("Update email for all students");
+			
+			session.createQuery("update Student set email='foo@gmail.com'")
+					.executeUpdate();
+			
+			
+			// commit the transaction
+			session.getTransaction().commit();
 			
 			System.out.println("Done!");
 		} 
