@@ -1,10 +1,13 @@
 package com.luv2code.hibernate.demo.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -39,18 +42,78 @@ public class Instructor {
 	@Column(name="email")
 	private String email;
 	
-	@Column(name="instructor_detail_id")
+	@OneToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="instructor")
 	private int instructorDetailId;
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
+	public Instructor() {
+		
+	}
+
+
+	public Instructor(String firstName, String lastName, String email) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+	}
+
+
+	public int getId() {
+		return id;
+	}
+
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+
+	public String getLastName() {
+		return lastName;
+	}
+
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+
+	public String getEmail() {
+		return email;
+	}
+
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+
+	public int getInstructorDetailId() {
+		return instructorDetailId;
+	}
+
+
+	public void setInstructorDetailId(int instructorDetailId) {
+		this.instructorDetailId = instructorDetailId;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Instructor [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
+				+ ", instructorDetailId=" + instructorDetailId + "]";
+	}
 	
 	
 }
