@@ -43,8 +43,8 @@ public class Instructor {
 	private String email;
 	
 	@OneToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="instructor")
-	private int instructorDetailId;
+	@JoinColumn(name="instructor_detail_id")
+	private InstructorDetail instructorDetail;
 	
 	
 	public Instructor() {
@@ -99,20 +99,20 @@ public class Instructor {
 	}
 
 
-	public int getInstructorDetailId() {
-		return instructorDetailId;
+	public InstructorDetail getInstructorDetail() {
+		return instructorDetail;
 	}
 
 
-	public void setInstructorDetailId(int instructorDetailId) {
-		this.instructorDetailId = instructorDetailId;
+	public void setInstructorDetail(InstructorDetail instructorDetail) {
+		this.instructorDetail = instructorDetail;
 	}
 
 
 	@Override
 	public String toString() {
 		return "Instructor [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
-				+ ", instructorDetailId=" + instructorDetailId + "]";
+				+ ", instructorDetail=" + instructorDetail + "]";
 	}
 	
 	
